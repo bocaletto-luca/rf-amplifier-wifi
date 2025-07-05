@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Professional RF Gain Block Amplifier for Wi-Fi Networks</title>
+  <meta name="description" content="Turnkey design and complete documentation for a dual-band 2.4 GHz/5 GHz RF gain-block amplifier optimized for Wi-Fi performance.">
+  <meta name="keywords" content="RF amplifier, Wi-Fi booster, gain block, 2.4 GHz, 5 GHz, PCB design, impedance matching, noise figure">
+  <meta name="author" content="RF Design Team">
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; }
+    header, footer { background: #004466; color: #fff; padding: 1rem; text-align: center; }
+    main { padding: 1rem 2rem; }
+    h1, h2 { color: #004466; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+    ul { margin: 0.5rem 0 1rem 1.5rem; }
+    pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Professional RF Gain Block Amplifier for Wi-Fi Networks</h1>
+  </header>
+
+  <main>
+    <section id="specifications">
+      <h2>1. System Specifications</h2>
+      <ul>
+        <li>Frequency Bands: 2.400–2.483 GHz & 5.150–5.825 GHz</li>
+        <li>Gain: 20 ± 1 dB</li>
+        <li>Noise Figure: ≤ 1.5 dB @ 2.4 GHz, ≤ 2 dB @ 5 GHz</li>
+        <li>Input/Output Impedance: 50 Ω</li>
+        <li>Input P<sub>1dB</sub>: ≥ +10 dBm; Output P<sub>1dB</sub>: ≥ +20 dBm</li>
+        <li>Supply: 5 V DC @ 60 mA</li>
+        <li>Return Loss: S11, S22 ≤ –12 dB</li>
+        <li>Stability: Unconditional (K > 1) from 0.1–6 GHz</li>
+        <li>PCB Substrate: FR-4, ε<sub>r</sub>≈4.4, 1.6 mm</li>
+      </ul>
+    </section>
+
+    <section id="device-selection">
+      <h2>2. Active Device Selection</h2>
+      <table>
+        <tr><th>Parameter</th><th>Requirement</th><th>Device Chosen</th></tr>
+        <tr><td>NF @ 2.4 GHz</td><td>≤ 1.5 dB</td><td>Qorvo QPF4219 pHEMT</td></tr>
+        <tr><td>Gain @ 2.4 GHz</td><td>≥ 20 dB</td><td>22 dB (typ.)</td></tr>
+        <tr><td>P<sub>1dB</sub> @ 2.4 GHz</td><td>≥ +20 dBm</td><td>23 dBm (typ.)</td></tr>
+        <tr><td>S-parameters</td><td>to 6 GHz</td><td>Available</td></tr>
+        <tr><td>DC Bias</td><td>5 V, 60 mA (Class A)</td><td>–</td></tr>
+      </table>
+    </section>
+
+    <section id="bias-network">
+      <h2>3. DC Bias Network</h2>
+      <ul>
+        <li>Class A bias: V<sub>DD</sub> = 5 V, I<sub>DQ</sub> ≈ 60 mA</li>
+        <li>Drain resistor R<sub>D</sub> ≈ 50 Ω</li>
+        <li>Gate bias resistor R<sub>G</sub> = 100 kΩ to ground</li>
+        <li>RF choke: 220 nH (0603) on V<sub>DD</sub></li>
+        <li>Bypass caps: 100 nF (0805) on V<sub>DD</sub> and gate</li>
+      </ul>
+    </section>
+
+    <section id="matching-networks">
+      <h2>4. Impedance Matching Networks</h2>
+
+      <h3>4.1 Input Match</h3>
+      <table>
+        <tr><th>Component</th><th>Value</th><th>Function</th></tr>
+        <tr><td>L<sub>in</sub> (series)</td><td>2.8 nH</td><td>50 Ω → Z<sub>in</sub></td></tr>
+        <tr><td>C<sub>in_sh</sub> (shunt)</td><td>1.5 pF</td><td>Flatten S11</td></tr>
+      </table>
+
+      <h3>4.2 Output Match</h3>
+      <table>
+        <tr><th>Component</th><th>Value</th><th>Function</th></tr>
+        <tr><td>L<sub>out</sub> (series)</td><td>3.2 nH</td><td>Z<sub>out</sub> → 50 Ω</td></tr>
+        <tr><td>C<sub>out_sh</sub> (shunt)</td><td>1.2 pF</td><td>Flatten S22</td></tr>
+      </table>
+
+      <h3>4.3 Harmonic Traps</h3>
+      <ul>
+        <li>2nd harmonic trap: 8.2 nH ∥ 0.5 pF @ 4.8 GHz</li>
+        <li>3rd harmonic trap: 5.6 nH ∥ 0.3 pF @ 7.2 GHz</li>
+      </ul>
+    </section>
+
+    <section id="bom">
+      <h2>5. Bill of Materials</h2>
+      <table>
+        <tr><th>Ref.</th><th>Description</th><th>Value</th><th>Package</th><th>Qty</th></tr>
+        <tr><td>Q1</td><td>Qorvo QPF4219 pHEMT</td><td>–</td><td>QFN-16</td><td>1</td></tr>
+        <tr><td>C1–C2</td><td>RF coupling caps</td><td>2 pF</td><td>0402</td><td>2</td></tr>
+        <tr><td>Cin_sh</td><td>Input match shunt</td><td>1.5 pF</td><td>0402</td><td>1</td></tr>
+        <tr><td>Cout_sh</td><td>Output match shunt</td><td>1.2 pF</td><td>0402</td><td>1</td></tr>
+        <tr><td>Lin</td><td>Input series inductor</td><td>2.8 nH</td><td>0402</td><td>1</td></tr>
+        <tr><td>Lout</td><td>Output series inductor</td><td>3.2 nH</td><td>0402</td><td>1</td></tr>
+        <tr><td>Lb</td><td>RF choke</td><td>220 nH</td><td>0603</td><td>1</td></tr>
+        <tr><td>Rg</td><td>Gate bias resistor</td><td>100 kΩ</td><td>0603</td><td>1</td></tr>
+        <tr><td>Rd</td><td>Drain bias resistor</td><td>50 Ω</td><td>0603</td><td>1</td></tr>
+        <tr><td>Cb</td><td>DC bypass caps</td><td>100 nF</td><td>0805</td><td>2</td></tr>
+        <tr><td>Filters</td><td>Band-pass PCB filters</td><td>Custom</td><td>PCB</td><td>2</td></tr>
+      </table>
+    </section>
+
+    <section id="schematic">
+      <h2>6. PCB Schematic</h2>
+      <pre>
+RF_IN ──[BPF]── C1 ── L&#x2090; ── Gate(Q1) ── L&#x2092; ── C2 ──[BPF]── RF_OUT
+                │            Rg│             Rd│
+               GND            Vcc           GND
+      </pre>
+      <p>
+        Figure 1: Functional schematic showing input band-pass filter (BPF), coupling capacitors,
+        matching inductors L<sub>in</sub>/L<sub>out</sub>, the QPF4219 amplifier stage, and output filter.
+      </p>
+    </section>
+
+    <section id="layout-guidelines">
+      <h2>7. PCB Layout Guidelines</h2>
+      <ul>
+        <li>FR-4 substrate, 1.6 mm, ε<sub>r</sub>=4.4.</li>
+        <li>50 Ω microstrip lines ~3 mm width on top layer.</li>
+        <li>Solid ground plane with via stitching every 3 mm.</li>
+        <li>Place RF choke and bypass caps within 0.5 mm of Q1 pins.</li>
+        <li>Keep matching components close to the transistor.</li>
+        <li>Use via pairs on shunt caps for minimal inductance.</li>
+      </ul>
+    </section>
+
+    <section id="testing">
+      <h2>8. Measurement & Verification</h2>
+      <ul>
+        <li>Network Analyzer: S-parameters, gain, return loss.</li>
+        <li>Spectrum Analyzer + Signal Generator: P<sub>1dB</sub>, harmonics.</li>
+        <li>Noise Figure Analyzer: NF @ both bands.</li>
+        <li>Linearity: Two-tone OIP3, EVM under 802.11ac.</li>
+        <li>Temperature sweep: –20 °C to +70 °C stability.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 RF Design Team. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
