@@ -162,8 +162,8 @@ The resulting netlist includes all the information required for automatic import
                                                        +── C_shunt_in (1.5 pF) ── GND
 
             5 V ── Lb (220 nH) ── Rd (50 Ω) ──+── Drain (Q1) ── L_out (3.2 nH) ── C2 (2 pF) ── [BPF_OUT] ── RF_OUT
-                                               |                                 |
-                                               +── C_bypass (100 nF) ── GND     +── C_shunt_out (1.2 pF) ── GND
+                                              |                                |
+                                              +── C_bypass (100 nF) ── GND     +── C_shunt_out (1.2 pF) ── GND
 
                                         Source (Q1) ── GND
 
