@@ -142,3 +142,15 @@ A turnkey design for a 2.4 GHz/5 GHz gain block amplifier, ideal for boosting Wi
 4. RF Amplifier – 5 Steps to Design an RF Amplifier, Flex PCB Guide  
 
 ---
+
+## 10. File rf_gain.py
+
+The script is written in Python and uses the SKiDL library to programmatically describe the RF amplifier’s electrical schematic. It begins by creating “Net” objects that represent key connection points—RF input, RF output, the transistor’s gate and drain, the supply rail, and ground. Next, individual components are instantiated, from the band-pass filters to the coupling capacitors, inductors, bias resistors, and the QPF4219 active device, each defined with its value and corresponding KiCad footprint.
+
+Each component is then linked to the nets defined at the start using SKiDL’s aggregation operator, recreating the signal and bias paths specified in the RF design. Because connections are declared rather than manually wired, wiring errors are virtually impossible. After all connections are established, the script runs an Electrical Rules Check (ERC) to verify the design’s integrity and finally generates a KiCad-compatible netlist file.
+
+The resulting netlist includes all the information required for automatic import into PCBNew—symbol-pin mappings, component values, footprints, and net assignments. This ensures you can immediately proceed to PCB layout with complete confidence that the schematic accurately reflects the intended design.
+
+---
+
+Good gain wifi, @bocaletto-luca
